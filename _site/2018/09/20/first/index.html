@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="这里是 朱宇翔 的个人博客，软件工程在读学生狗。">
+    <meta name="keywords"  content="朱宇翔,zyx,深度学习,软件工程, 博客, 个人网站, 互联网, Web, Java">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="读书笔记系列之《人月神话》 - 朱宇翔的博客 | Zyx Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="从我大二的时候，软件工程的老师们就一致推荐人月神话作为软件工程专业的入门读物。在人月神话中，作者分条理阐述了许多从软件工程实践中总结出的经验，发人深省，为软件项目管理者提供了在对解决人与软件协调困难的一些解决方案。
+
+">
+    
+    <meta property="article:published_time" content="2018-09-20T00:00:00Z">
+    
+    
+    <meta property="article:author" content="Zhu Yuxiang">
+    
+    
+    <meta property="article:tag" content="读书笔记">
+    
+    <meta property="article:tag" content="人月神话">
+    
+    
+    <meta property="og:image" content="http://localhost:4000/img/avatar-hux-ny.jpg">
+    <meta property="og:url" content="http://localhost:4000/2018/09/20/first/">
+    <meta property="og:site_name" content="朱宇翔的博客 | Zyx Blog">
+    
+    <title>读书笔记系列之《人月神话》 - 朱宇翔的博客 | Zyx Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/ce.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2018/09/20/first/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Zyx Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" title="读书笔记">读书笔记</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D" title="人月神话">人月神话</a>
+                        
+                    </div>
+                    <h1>读书笔记系列之《人月神话》</h1>
+                    
+                    <h2 class="subheading">No silver bullet</h2>
+                    <span class="meta">Posted by Zhu Yuxiang on September 20, 2018</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>从我大二的时候，软件工程的老师们就一致推荐人月神话作为软件工程专业的入门读物。在人月神话中，作者分条理阐述了许多从软件工程实践中总结出的经验，发人深省，为软件项目管理者提供了在对解决人与软件协调困难的一些解决方案。</p>
+
+<p>首先，项目发生滞后的最主要原因是缺乏合理的时间进度。而缺乏合理的时间进度主要是由于：1.我们对项目进度的估算方法不太有效。2.我们的估算进度默认将进度与工作量相混淆，假设人和月可以互换。3.软件过程经理很少会持续地进行估算工作。4.对进度缺乏跟踪和监督。5.当意识到进度的偏离时，传统的反映是增加人力。此外，编程人员都是乐观主义者，直到项目出现严重偏离后，才会发现进度的滞后。作为一个学科，软件工程缺乏良好的数据估计方法。项目进度的落后通常是由于一天一天的落后逐渐积累起来的落后。这种小额，多次的落后比起重大灾难，更难以察觉，防范和弥补。因此，作者建议我们建立一个严格的进度表来控制项目进度，由里程碑和日期组成。其中里程碑是具体的，特定的，可度量的事件。此外，作者还建议我们制定pert图来跟踪项目进度，防止偏离里程碑，并能对项目进度偏离找到尽快的解决方案。甚至对于大型项目，作者还建议建立一个专门小组来维护里程碑报告。</p>
+
+<p>我认为人月神话的一个核心观点是：在系统设计中，概念完整性是最重要的考量因素。即设计系统时为了保持系统各部分风格的一致性，宁可省略一些不符合整体规则的特性和改进。为了保证概念完整性，大型软件项目通常采用树状的设计结构，即由一个人或少数极有默契的设计人员来负责体系结构的设计。此外，体系结构设计与代码具体实现必须仔细地区别开来。在现代软件系统设计中，这一提倡被毫无疑问地实施了：大型项目中，由体系结构师来设计整体的结构，到各个子系统内，也使用由上往下的设计方式。由子系统结构设计师设计子系统的结构，再将实现任务分发给各实现单位。这么做也事实上加快了软件项目的进程，因为体系结构设计，实现和测试等工作可以并发地进行。由于成本的来源很大程度上是成员沟通和交流的成本，因此小型，精干的队伍是更好的，虽然对于大型系统中这显得太慢了。为了使整个系统能具有概念上的完整性，应该指定一个有经验的架构师，从上至下进行整体结构的设计。此外，作者还认为设计师不能画蛇添足，即牢记具体实现的开发人员也应当具有创造性和发明性，结构师不应该剥夺底层人员创造的乐趣。所以结构师只能建议实现方案，而不能支配。结构师应该对实现的建议保持低调，随时准备放弃自己对具体实现的建议。</p>
+
+<p>此外我感到较为深刻的是，作者十分重视团队的交流，建议团队使用尽可能多的方式进行交流，建议团队通过正式的项目工作手册进行交流。在现代项目中，使用文档进行交流是非常重要的一个部分。作者还十分重视手册的设计，变更和维护。我认为这对现在项目十分有参考性。我们应当建立维护良好，实时变更的文档，来进行精确，无歧义的沟通。而且书面记录决策和分歧，有助于消除分歧，突出矛盾。此外项目经理还能够根据书面记录的文档来检验工作是否很好地完成。</p>
+
+<p>没有银弹是作者最后提出的一个知名观点。作者认为软件系统具有其根本的，无法规避的内在特性：复杂性，一致性，可变性和不可变性。软件很可能是有史以来人类创造出来的最复杂的实体。作者将软件开发活动分为根本活动和次要活动。根本活动是打造构成软件实体的复杂结构，次要任务是使用编程语言表达这些实体的任务，在时间和空间限制内将它们映射成机器语言。除非次要任务的所有时间削减到0，否则生产效率不可能产生数量级的提高，这就是没有银弹。</p>
+
+<p>总而言之，虽然本书著书至今已有四十多年，在互联网高速发展的今天，它倡导的软件工程方法依然有价值，我将本书推荐给每一名立志参加软件行业的学生。</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/10/05/peopleware/" data-toggle="tooltip" data-placement="top" title="读书笔记系列之《人件》">
+                        Next<br>
+                        <span>读书笔记系列之《人件》</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+
+                <!-- Friends Blog -->
+                
+<!--<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+</ul>-->
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hux";
+    var disqus_identifier = "/2018/09/20/first";
+    var disqus_url = "http://localhost:4000/2018/09/20/first/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Zyx Blog 2019
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'zzzzzyx.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+
+
+<!-- Multi-Lingual -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

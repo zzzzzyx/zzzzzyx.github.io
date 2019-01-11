@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="这里是 朱宇翔 的个人博客，软件工程在读学生狗。">
+    <meta name="keywords"  content="朱宇翔,zyx,深度学习,软件工程, 博客, 个人网站, 互联网, Web, Java">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="朱宇翔的博客 | Zyx Blog">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="走过二十国，终老菩提树">
+    
+    <meta property="og:image" content="http://localhost:4000/img/avatar-hux-ny.jpg">
+    <meta property="og:url" content="http://localhost:4000/">
+    <meta property="og:site_name" content="朱宇翔的博客 | Zyx Blog">
+    
+    <title>朱宇翔的博客 | Zyx Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/ce.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Zyx Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Page Header -->
+
+
+
+
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="site-heading">
+        
+          <h1>Zyx Blog</h1>
+          <span class="subheading">走过二十国，终老菩提树</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+<!-- NO SIDEBAR -->
+    <!-- PostList Container -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 postlist-container">
+                
+<div class="post-preview">
+    <a href="/2019/01/01/cmm_cmmi/">
+        <h2 class="post-title">
+            时代的眼泪：CMM/CMMI能力成熟度模型
+        </h2>
+        
+        <h3 class="post-subtitle">
+            论CMM/CMMI不再适用于当前软件开发的原因
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                软件能力成熟度模型（Capability Maturity Model for Software）CMM 是一种用于评估软件承包能力以及改善软件质量的方法，侧重于软件开发过程的工程及管理能力的提高与评估。CMMI 是 1994 年提出的在 CMM 基础上衍生出的软件能力成熟度集成模型（Capability Maturity Model Integration），它将各种能力成熟度模型整合到同...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhu Yuxiang on January 1, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2018/11/24/theLeanStartup.1/">
+        <h2 class="post-title">
+            读书笔记系列之《精益创业》
+        </h2>
+        
+        <h3 class="post-subtitle">
+            The Lean Startup
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                本文作者是一名有着丰富领域经验的创业者，他先是自己创建了一个基于虚拟画像的互联网公司，然后将其以高价卖给了雅虎公司。随后作者在风险投资，扶持创业公司方面投入了大量精力。
+
+本文第一篇章探讨了学习对衡量新创企业进展情况的重要性。作者竭力强调早期推出原型产品对于产品开发的重要性。开发者先推出仅有较少的必要功能的产品并面向早期顾客推出，这样企业就能够高效获得更精确的用户需求数据，并发现一些意料之外...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhu Yuxiang on November 24, 2018
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2018/11/08/hackerAndPrinter.1/">
+        <h2 class="post-title">
+            读书笔记系列之《黑客与画家》
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Hacker and printer
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                作者是一位放荡不羁，与主流观点相悖的黑客，在书中提到的许多软件方面的观点都与软件工程传统思路不同，虽然我无法完全赞成作者的观点，但辩证地看待并分析《黑客与画家》一书使我受益匪浅。
+
+首先作者对书呆子的评价使我耳目一新。在美式中学教育中，你越喜欢读书，越不受别人的欢迎。而作者认为书呆子都是高智商人群。当同龄人把精力都放在如何使自己更受欢迎时，他们不愿意将经历放在打扮自己，放在社交上，而是放在学...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhu Yuxiang on November 8, 2018
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2018/10/22/contemplate.1/">
+        <h2 class="post-title">
+            读书笔记系列之《软件管理沉思录》
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Reflections on Mangagement
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                软件管理沉思录是由一位经验丰富的管理者撰写的，结合实践和管理理论来为软件项目管理者提供指导的书籍。文章分为四个部分，分别是管理项目，管理团队，管理领导和管理自己。
+
+第一部分作者探讨了对软件项目的管理。作者认为我们必须着眼于构建高质量的软件产品，并为高质量项目制定计划。如今软件的项目越来越大，对于软件质量的要求也越来越高。由于基于测试的质量保障方案已不适用，软件工程师必须尝试在软件开发过程中...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhu Yuxiang on October 22, 2018
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2018/10/05/peopleware/">
+        <h2 class="post-title">
+            读书笔记系列之《人件》
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Peopleware
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                人月神话与人件都是软件工程领域的入门必读书籍。前者注重于软件开发本身，注重于系统开发与设计中应当注意的事情；而后者则将软件工程中人的因素剥离开，单独来看人对软件工程的影响。在人件中，人被当作工程中的一个模块来管理。人件认为，软件工程中引起项目失败的因素更多地属于社会学范畴，而不是技术上的失败。
+
+本书分为六个部分，第一部分探讨的是管理人力资源的问题。首先，作者指出软件项目失败率很大，而失败的...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhu Yuxiang on October 5, 2018
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2018/09/20/first/">
+        <h2 class="post-title">
+            读书笔记系列之《人月神话》
+        </h2>
+        
+        <h3 class="post-subtitle">
+            No silver bullet
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                从我大二的时候，软件工程的老师们就一致推荐人月神话作为软件工程专业的入门读物。在人月神话中，作者分条理阐述了许多从软件工程实践中总结出的经验，发人深省，为软件项目管理者提供了在对解决人与软件协调困难的一些解决方案。
+
+首先，项目发生滞后的最主要原因是缺乏合理的时间进度。而缺乏合理的时间进度主要是由于：1.我们对项目进度的估算方法不太有效。2.我们的估算进度默认将进度与工作量相混淆，假设人和月...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhu Yuxiang on September 20, 2018
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+
+                <!-- Friends Blog -->
+                
+<!--<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+</ul>-->
+
+            </div>
+        
+	</div>
+</div>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Zyx Blog 2019
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'zzzzzyx.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+
+
+<!-- Multi-Lingual -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

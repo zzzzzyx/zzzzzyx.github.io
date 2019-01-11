@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="这里是 朱宇翔 的个人博客，软件工程在读学生狗。">
+    <meta name="keywords"  content="朱宇翔,zyx,深度学习,软件工程, 博客, 个人网站, 互联网, Web, Java">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="时代的眼泪：CMM/CMMI能力成熟度模型 - 朱宇翔的博客 | Zyx Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="软件能力成熟度模型（Capability Maturity Model for Software）CMM 是一种用于评估软件承包能力以及改善软件质量的方法，侧重于软件开发过程的工程及管理能力的提高与评估。CMMI 是 1994 年提出的在 CMM 基础上衍生出的软件能力成熟度集成模型（Capability Maturity Model Integration），它将各种能力成熟度模型整合到同...">
+    
+    <meta property="article:published_time" content="2019-01-01T00:00:00Z">
+    
+    
+    <meta property="article:author" content="Zhu Yuxiang">
+    
+    
+    <meta property="article:tag" content="CMM/CMMI">
+    
+    <meta property="article:tag" content="能力成熟度">
+    
+    
+    <meta property="og:image" content="http://localhost:4000/img/avatar-hux-ny.jpg">
+    <meta property="og:url" content="http://localhost:4000/2019/01/01/cmm_cmmi/">
+    <meta property="og:site_name" content="朱宇翔的博客 | Zyx Blog">
+    
+    <title>时代的眼泪：CMM/CMMI能力成熟度模型 - 朱宇翔的博客 | Zyx Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/ce.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2019/01/01/cmm_cmmi/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Zyx Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=CMM%2FCMMI" title="CMM/CMMI">CMM/CMMI</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E8%83%BD%E5%8A%9B%E6%88%90%E7%86%9F%E5%BA%A6" title="能力成熟度">能力成熟度</a>
+                        
+                    </div>
+                    <h1>时代的眼泪：CMM/CMMI能力成熟度模型</h1>
+                    
+                    <h2 class="subheading">论CMM/CMMI不再适用于当前软件开发的原因</h2>
+                    <span class="meta">Posted by Zhu Yuxiang on January 1, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>软件能力成熟度模型（Capability Maturity Model for Software）CMM 是一种用于评估软件承包能力以及改善软件质量的方法，侧重于软件开发过程的工程及管理能力的提高与评估。CMMI 是 1994 年提出的在 CMM 基础上衍生出的软件能力成熟度集成模型（Capability Maturity Model Integration），它将各种能力成熟度模型整合到同一个框架中去，为改进一个组织的各种过程提供了一个单一的集成化框架。CMMI 共有五个等级，标志着软件企业成熟度的五个层次。从低到高意味着软件开发生产计划精度逐级提高，单位工程生产周期逐渐缩短，单位工程成本逐级降低。</p>
+
+<p>CMM/CMMI 自 1987 年卡耐基梅隆大学软件研究所提出以来，已经过 30 年的软件行业的实践评估，曾被证明是卓有成效的软件能力成熟度评估方法。然而随着 21 世纪个人电脑的广泛普及，移动互联网的大规模发展，现在软件开发呈现出规模特别庞大，用户数量急剧增加，需求快速变更，软件迭代周期短，分发部署方式变化（版本更新频繁）的特点。鉴于这样的特点，21 世纪敏捷开发的思想被提出，并在短期内迅速风靡全球，成为当今互联网软件开发公司的主流开发方式。2018 年某权威调查报告指出 94%调查者所在企业使用敏捷方法进行开发[1]。而极限编程是敏捷开发方法学中最富有成效的开发方法之一，现在也被需要快速迭代的互联网软件开发行业所广泛采用。然而，由于 CMMI 倡导的开发实践常常和敏捷开发方式相违背，我们发现采用敏捷软件开发和极限编程的公司难以使用 CMM/CMMI 来帮助过程改进。荣国平等人[1]指出 CMM/CMMI 和敏捷方法不是对立面，而是两个领域的概念：前者是软件过程改进，后者是软件开发方法。我们在此基础上尝试阐释 CMM/CMMI 这样的软件过程改进方法已不适用于当下的软件开发方法。以下我们详细探讨 CMMI 不适用于当前软件环境的原因。</p>
+
+<p>首先，CMMI 倡导的决策方式过于笨重，不适用于当下市场需求快速变更的环境。CMMI成熟度第三级支持管理中，决策分析与解决方案 DAR（Decision Analysis and Resolution）旨在利用正式的评估过程，依据已建立的准则来评估各种已识别的方案，来分析可行的决策，选择解决方案。然而在市场需求快速变更的大环境下，迅速适应新状况的能力比正式评估解决方案的方式更有效，也更为敏捷开发团队所青睐。毕竟，敏捷宣言中明确指出“响应变化高于遵循计划”。因此，在敏捷开发模式中，实践中通常非正式地识别和评估决策。</p>
+
+<p>此外，CMMI 对于过程管理的级别不适用于当下软件开发的大环境。在软件能力成熟度模型中，组织级是过程管理的基本级别。过程管理中组织级过程焦点 OPF（Organizational Process Focus）根据对组织过程和过程资产的全面理解，分析当前过程的强项和不足，从而规划和实施组织过程改进。OPF 要求组织中有专门的实体或机制来负责过程改进工作。然而在敏捷软件实践中，“小团队”更受倡导，这是因为小型的，成员分工模糊的团队能够更快地适应变更。因此在敏捷软件和极限编程开发方式中，过程改进通常以小型项目为单位存在，过程改进中获得的新经验被每个个人所吸收，且不形成文档。此外，受当前主流的微服务或类似的开发架构所影响，互联网公司以一个个小型团队为结构组织，团队与团队间交互较少，改进一般只在团队内发生。因此建立组织级的过程改进不仅十分困难，实际上是帮助不大的。同样地，在 CMMI 中的组织过程性能 OPP（Organizational Process Performance）和组织革新部署 OID（Organizational Innovation and Deployment）中，CMMI 倡导以组织为单位度量过程性能，度量产品质量，建立革新部署的单位，这都与极限编程和敏捷开发等当下主流小型团队的开发方法相违背。</p>
+
+<p>第三，CMMI 中的量化项目管理 QPM（Quantitative Project Management）与小型团队开发方式相冲突[3]。QPM 倡导组织通过对项目的定量管理以期望达到项目预定的质量和过程性能指标。事实上，敏捷开发的团队并不进行这样耗费大量成本但无法提升团队管理的度量。此外，量化项目管理使用静态的控制方法和度量标准。这在大型团队上可能有效，但在小型团队上不仅没有作用，还会阻碍团队成员的开发动力。与其相类似的是 CMMI Generic Practices3.2 中的收集改进信息（Collect Improvement Information）。对于小型团队而言，改进信息更多地融入到个人经验的提升，收集改进信息与敏捷开发的思想冲突。此外，CMMI GP2.9 客观评估遵从度（意为邀请小组外的专业人士来对组内情况进行客观评估）。很明显，这对给予开发小组足够自由度的敏捷开发团队而言会是一个打击，会让小组成员对于自由开发有所顾忌。极限编程和敏捷开发建议小组能够在组长领导下自洽地评估团队工作效率，总结进度。</p>
+
+<p>第四，敏捷开发中，软件开发的主要目标是以有效的方式，制造出满足投资者需要的软件，而不是制造无关的文档，无关的模型。此外，敏捷开发主张更简单的方案就是更好的解决方案。而很明显，CMMI GP4.1 为过程建立量化目标（Establish Quantitative Objectives for the Process）与敏捷开发原则违背[2]。此外，GP4.2 稳定子过程性能（Stabilize Subprocess Performance）[4]使用静态和量化技术来评估子过程性能，从而使子过程的量化质量和过程性能达到稳定。这同样违背了敏捷开发原则：子过程的概念事实上和目标用户无关。且这一实践同样违反了第三条原因：以过多的量化方法指导改进。</p>
+
+<p>第五，CMMI 过分重视文档的重要性，认为文档是沟通的最佳方式。在 CMMI 的实际实践中，开发人员需要付出大量时间精力来撰写各类文档，然而这些文档绝大多数用处较为局限，却浪费了大量成本。反而，大量的文档增加了查询难度，使沟通的效率更为低下。而敏捷开发方式认为在开发小组中最有效的信息沟通方式是面对面交谈而不是文档。文档在敏捷开发中毫无疑问是必不可少的，但团队成员应尽量撰写必要的和简洁的文档，因为尽可能减少工作量的艺术尤为重要。除了增加工作量和成本外，CMMI 对文档的过分重视可能还会打消有创造才能的开发人员的创造动力，降低团队士气。</p>
+
+<p>此外，CMMI 不适用于中小企业也是不适用于当前的软件开发的原因之一。软件能力成熟度模型提出的时候，主要还是大公司主导软件开发，而进入 21 世纪，随着互联网的兴起，硬件成本的大幅下降，软件开发成本的不断降低，大量中小企业如雨后春笋般进入市场。两位来自爱尔兰的作者 Rory et al.[5]在对爱尔兰市场上 21 家中小型企业的经理采访后，认为使用和保持 CMM 软件改进过程会造成巨大成本和时间。然而相比起改进软件过程，中小型公司有许多优先级更高的事需要实现。许多受访者认为 CMM 对他们的开发造成了额外的负担如更多的文档工作和官僚主义(大大增加用于管理和应用软件过程的成本和资源)，并且软件过程改进可能削弱他们的创新性和灵活性，使他们更难以存活下去。因此 CMM 软件过程模型难以应用到现在互联网软件开发的主体-中小型企业上。相反地，这些企业更乐于拥抱极限编程，这能大大减少软件开发成本。一些公司发现如果使用 CMMI 来发布软件，他们可能需要评估三个月后才能部署，然而他们打算一天要发布好几次软件！</p>
+
+<p>总体上，CMM/CMMI 是一个过于细节，过于冗长，过于重量级的评估模型，而且它需要高层的强力管理才能得到实施。敏捷宣言的四个核心价值中有三个都与 CMMI 冲突：个体和互动高于流程和工具，工作的软件高于详尽的文档，响应变化和遵循计划。毫无疑问， CMMI 能够帮助软件公司提高软件过程的可预测性，可重复性和可靠性。然而在需求快速更新的互联网时代，软件公司的创造性和灵活性更为重要，而这正是 CMMI 为了达到软件过程的严谨所牺牲的要素。因此，当前软件大环境下需要轻量级的，易变更的解决方案来改进软件过程。</p>
+
+<p>References:</p>
+
+<p>[1]	荣国平，张贺，邵栋，王青: 软件组织与管理方法综述. 软件学报, 2018</p>
+
+<p>[2]	Martin Fritzsche and Patrick Keil, “Agile Methods and CMMI: Compatibility or Conflict?”, In e-Informatica Software Engineering Journal, vol. 1, no. 1, pp. 9–26, 2007. DOI: .</p>
+
+<p>[3]	Turner R., Jain A. (2002) Agile Meets CMMI: Culture Clash or Common Cause?. In: Wells D., Williams L. (eds) Extreme Programming and Agile Methods — XP/Agile Universe 2002. XP/Agile Universe 2002. Lecture Notes in Computer Science, vol 2418. Springer, Berlin, Heidelberg</p>
+
+<p>[4]	Taghi Javdani Gandomani, HazuraZulzalil. Compatibility of Agile Software Development Methods and CMMI. Indian Journal of Science and Technology, [S.l.], p. 5089-5094, Aug. 2013. ISSN 0974 -5645.</p>
+
+<p>[5]	O’Connor, Rory and Coleman, Gerry (2009) Ignoring ‘best practice’: Why Irish software SMEs are rejecting CMMI and ISO 9000. Australasian Journal of Information Systems, 16 (1). ISSN 1449-8618</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/11/24/theLeanStartup.1/" data-toggle="tooltip" data-placement="top" title="读书笔记系列之《精益创业》">
+                        Previous<br>
+                        <span>读书笔记系列之《精益创业》</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+
+                <!-- Friends Blog -->
+                
+<!--<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+</ul>-->
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hux";
+    var disqus_identifier = "/2019/01/01/cmm_cmmi";
+    var disqus_url = "http://localhost:4000/2019/01/01/cmm_cmmi/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Zyx Blog 2019
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'zzzzzyx.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+
+
+<!-- Multi-Lingual -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

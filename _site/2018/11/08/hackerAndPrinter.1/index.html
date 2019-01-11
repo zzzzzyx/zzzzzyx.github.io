@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="这里是 朱宇翔 的个人博客，软件工程在读学生狗。">
+    <meta name="keywords"  content="朱宇翔,zyx,深度学习,软件工程, 博客, 个人网站, 互联网, Web, Java">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="读书笔记系列之《黑客与画家》 - 朱宇翔的博客 | Zyx Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="作者是一位放荡不羁，与主流观点相悖的黑客，在书中提到的许多软件方面的观点都与软件工程传统思路不同，虽然我无法完全赞成作者的观点，但辩证地看待并分析《黑客与画家》一书使我受益匪浅。
+
+">
+    
+    <meta property="article:published_time" content="2018-11-08T00:00:00Z">
+    
+    
+    <meta property="article:author" content="Zhu Yuxiang">
+    
+    
+    <meta property="article:tag" content="读书笔记">
+    
+    <meta property="article:tag" content="黑客与画家">
+    
+    
+    <meta property="og:image" content="http://localhost:4000/img/avatar-hux-ny.jpg">
+    <meta property="og:url" content="http://localhost:4000/2018/11/08/hackerAndPrinter.1/">
+    <meta property="og:site_name" content="朱宇翔的博客 | Zyx Blog">
+    
+    <title>读书笔记系列之《黑客与画家》 - 朱宇翔的博客 | Zyx Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/ce.jpeg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2018/11/08/hackerAndPrinter.1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Zyx Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" title="读书笔记">读书笔记</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E9%BB%91%E5%AE%A2%E4%B8%8E%E7%94%BB%E5%AE%B6" title="黑客与画家">黑客与画家</a>
+                        
+                    </div>
+                    <h1>读书笔记系列之《黑客与画家》</h1>
+                    
+                    <h2 class="subheading">Hacker and printer</h2>
+                    <span class="meta">Posted by Zhu Yuxiang on November 8, 2018</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>作者是一位放荡不羁，与主流观点相悖的黑客，在书中提到的许多软件方面的观点都与软件工程传统思路不同，虽然我无法完全赞成作者的观点，但辩证地看待并分析《黑客与画家》一书使我受益匪浅。</p>
+
+<p>首先作者对书呆子的评价使我耳目一新。在美式中学教育中，你越喜欢读书，越不受别人的欢迎。而作者认为书呆子都是高智商人群。当同龄人把精力都放在如何使自己更受欢迎时，他们不愿意将经历放在打扮自己，放在社交上，而是放在学习里。相比于学校里，书呆子会遭受到恶魔一样的待遇，在成人世界中，这种情况就好的多了。作者认为美国的公立学校教育体制出了问题，导致学生远离学习。</p>
+
+<p>第三章仿佛是一个和软件完全无关的章节。作者认为从古至今，人们的思想都是随大流的，说出和社会违背的真话很有可能会遭受不公平的待遇。当大家不指出对方的话是错的，而是给对方的话贴标签如“修正主义”，“右倾主义”，那这时我们就应当警惕了。目前在美国，“政治正确”的风气登峰造极，和它相违背的都会遭受打压。作者希望读者能够不受这些社会流行舆论的禁锢，去思考那些惊世骇俗的思想观点。只要能看到别人看不到或者不敢看的东西，就会很有优势。虽然如此，作者建议对于这些“不能说的话”，想想就行，不要说出口，以免惹火上身。自由思考比畅所欲言更重要。作者还描写了很多应对的方式，都十分有益，如“将争论上升到抽象层次”，这里不再赘述。</p>
+
+<p>作者认为小团体比大公司有着显而易见的好处。小团队每个人的贡献都是可测量的，因为每个人都能看到自己的努力对于团队的贡献。作者将大公司比作罗马战舰，虽然有上千名划船手共同划船，但船却滑不快，这是因为大家都看不到自己努力对于整体的改变，因此大家就没有努力的动力。就算自己努力了，看到不努力的别人也会想“凭什么我要为他的懈怠买单”。而小公司的个体却能受到有效的激励，因为他们能自发地为团体谋取利益。因此现在大公司内常常会建立小的团队，自己管理自己，自负盈亏，来开发软件。比如腾讯的光子实验室。这就是由于小团队中每个个体能受到更大的激励，能充分发挥自己的能力。</p>
+
+<p>作者还对设计进行了探讨（不局限于软件方面）。作者认为好设计是：</p>
+<ol>
+  <li>简单的设计。美依赖于精心选择的结构性元素，而不依赖于表面装饰品的堆砌</li>
+  <li>永不过时的设计。避开时代风潮的影响。</li>
+  <li>启发式的设计。不必告诉使用者应该如何使用，使用者可以按照自己的愿望去使用它</li>
+  <li>有趣味性的设计。“幽默反映了一种力量，它是强壮感的表现。始终拥有幽默感代表你对厄运一笑了之，而丧失幽默感则代表你被厄运深深伤到。”</li>
+  <li>艰苦的设计。必须要艰苦地工作才能做出伟大的作品。</li>
+  <li>模仿大自然的设计。大自然在演化过程中已经解决了很多设计问题，因此模仿大自然的设计就是站在巨人的肩膀上。</li>
+  <li>好设计常常是大胆的设计。
+我认为作者对设计的理解十分透彻，发人深省。</li>
+</ol>
+
+<p>令人惊讶的是作者对Lisp，Perl等语言的推崇，而对java的不屑。作者认为java过于笨重，对程序员的限制太多。而Lisp十分轻便，容易开发，因此应当是创业公司首选。我认为作者说的不无道理。在当今互联网世界中，迅速开发即是王道，使用Lisp, python等语言有助于快速早期系统的开发。然而作者由于自身经验的局限（关注于创业公司而不是大型，长期的项目），没能够看到高复用性，代码可读性，健壮性对软件维护的重要性。在大型项目中，Lisp，python的代码可维护性不如java。由于java是静态类型语言，对程序员的容错率更高，因此维护起来更好。由于作者只短期内创立了成功项目Viaweb，没能长久地维持下去，因此没能看到多人维护代码时的困难。</p>
+
+<p>虽然作者的部分观点在现在还是无法被世人（和我）完全地接受，但或许百年之后能证明作者是对的呢（比如java终究会落后于Lisp）。不过，作者的其他讨论让我如沐春风，至于其他更多引起争论的部分？让我们拭目以待。</p>
+
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/10/22/contemplate.1/" data-toggle="tooltip" data-placement="top" title="读书笔记系列之《软件管理沉思录》">
+                        Previous<br>
+                        <span>读书笔记系列之《软件管理沉思录》</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/11/24/theLeanStartup.1/" data-toggle="tooltip" data-placement="top" title="读书笔记系列之《精益创业》">
+                        Next<br>
+                        <span>读书笔记系列之《精益创业》</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+
+                <!-- Friends Blog -->
+                
+<!--<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+</ul>-->
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hux";
+    var disqus_identifier = "/2018/11/08/hackerAndPrinter.1";
+    var disqus_url = "http://localhost:4000/2018/11/08/hackerAndPrinter.1/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Zyx Blog 2019
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'zzzzzyx.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+
+
+<!-- Multi-Lingual -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
