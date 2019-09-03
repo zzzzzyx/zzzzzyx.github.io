@@ -8,7 +8,7 @@ plugins: [jekyll-paginate, redcarpet]
 
 # Setup
 title:            Yuxiang Zhu
-tagline:          'tagline？'
+tagline:          
 description:      'A current master student in Nanjing University.'
 url:              https://zzzzzyx.github.io/
 baseurl:          /
