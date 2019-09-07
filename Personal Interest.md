@@ -22,7 +22,7 @@ In 2018 Winter, I spent 15 days in Japan, visiting Kanto, Kansai and Hokkaido.
 
 In 2018 Summer, I traveled to Azerbaijian, Georgia, Turkey, Jordan, Egypt, UAE, and Siri lanka. It spent 45 days in total.
 
-<img src='../fly.jpg'/>
+<img src='../fly.png'/>
 
 ## Soccer (Or football?)
 
