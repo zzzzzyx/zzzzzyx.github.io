@@ -26,3 +26,4 @@ In 2018 Summer, I traveled to Azerbaijian, Georgia, Turkey, Jordan, Egypt, UAE, 
 I play soccer since I was in Senior High. After I enrolled in Nanjing University, I joined the soccer team of software institute. The second yeaar, I served as the captain of the team. In four years, I attended over 60 inter-department matches, and scored over 20 as a defender. We won two second runner-up and a fourth in the inter-department league (27 teams altogether).
 
 <img src='../soccer.jpg'/>
+<caption>In the picture, I am the one who scored by his head. (Look closely to see the ball)</caption>
