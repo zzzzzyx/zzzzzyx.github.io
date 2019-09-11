@@ -15,9 +15,9 @@ Until now, I don't have any publication, but I'm working hard to make one.
 
 Recently, two papers were released to arxiv.
 
-**Yuxiang Zhu** and Minxue Pan, "Automatic Code Summarization: A Systematic Literature Review," Eprint arXiv: 1909.04352. [[pdf](https://arxiv.org/pdf/1909.04352.pdf)]
+**Yuxiang Zhu** and Minxue Pan, "Automatic Code Summarization: A Systematic Literature Review," arXiv:1909.04352 [cs], Sept. 2019. [[pdf](https://arxiv.org/pdf/1909.04352.pdf)]
  
-**Yuxiang Zhu**, Minxue Pan, Yu Pei and Tian Zhang,  "A Bug or a Suggestion? An Automatic Way to Label Issues," Eprint arXiv:1909.00934. [[pdf](https://arxiv.org/pdf/1909.00934.pdf)]
+**Yuxiang Zhu**, Minxue Pan, Yu Pei and Tian Zhang, "A Bug or a Suggestion? An Automatic Way to Label Issues," arXiv:1909.00934 [cs], Sept. 2019. [[pdf](https://arxiv.org/pdf/1909.00934.pdf)]
 
 
 Please find more information about my research information at my [CV](cv).
