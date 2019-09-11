@@ -13,7 +13,7 @@ Now, I am **looking for possible PhD program** overseas in the fields of natural
 
 Until now, I don't have any publication, but I'm working hard to make one.
 
-Recently, two paper was released to arxiv, 2019.
+Recently, two papers were released to arxiv.
 
 **Yuxiang Zhu** and Minxue Pan, "Automatic Code Summarization: A Systematic Literature Review," Eprint arXiv: 1909.04352. [[pdf](https://arxiv.org/pdf/1909.04352.pdf)]
  
