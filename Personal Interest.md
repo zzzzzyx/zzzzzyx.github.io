@@ -19,7 +19,7 @@ I have been to 20 countries, including:
 
 From 06/30/2017 to 08/13/2017, I traveled across the Eurasian continent by taking trains, buses and boats. Started from Shenyang, China, I passed by Russia, Nordic, Germany, Cezch, Italy, Swiss and finally I reached Paris.
 
-<img src='../cross.jpg'/>
+<img src='../cross.png'/>
 
 In 2018 Winter, I spent 15 days in Japan, visiting Kanto, Kansai and Hokkaido.
 
