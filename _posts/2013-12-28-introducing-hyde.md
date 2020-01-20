@@ -7,8 +7,6 @@ I am a master student at Software Institute, Nanjing University. Currently, I am
 
 Recently, my researches are mainly focused on natural language processing for software engineering, mining software repositories, code summarization. Also, I am broadly interested in all subfields of natural language processing, information retrieval and machine learning.
 
-Now, I am **looking for possible PhD program** overseas in the fields of computer science. If you have interest in accepting me to your group, please contact me via email.
-
 ### Publication
 
 Until now, I don't have any publication, but I'm working hard to make one.
